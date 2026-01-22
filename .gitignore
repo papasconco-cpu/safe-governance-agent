@@ -1,16 +1,19 @@
-__pycache__/
-*.pyc
-*.pyo
+# Local env
 .env
+
+# Virtualenv
 .venv/
 venv/
-dist/
-build/
-*.egg-info/
-.coverage
+
+# Python
+__pycache__/
+*.pyc
 .pytest_cache/
 .mypy_cache/
-.idea/
-.vscode/
+.ruff_cache/
+
+# Logs (never commit audit trails)
 logs/
+!logs/.gitkeep
 *.jsonl
+
