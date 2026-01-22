@@ -19,3 +19,12 @@ cd ~/dev/safe-governance-agent
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+
+## Run with Docker (Deployable MVP)
+
+## Run with Docker (Deployable MVP)
+
+1) Create `.env` from example:
+cp .env.example .env
+
+
