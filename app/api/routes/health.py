@@ -5,9 +5,11 @@ from app.core.config import settings
 
 router = APIRouter(tags=["health"])
 
+
 @router.get("/")
 def health_check():
     return {"status": "ok", "service": "safe-governance-agent"}
+
 
 @router.get("/health")
 def detailed_health():
@@ -18,4 +20,3 @@ def detailed_health():
             "environment": settings.environment,
         }
     )
-

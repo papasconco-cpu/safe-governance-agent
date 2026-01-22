@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends
-from app.core.deps import require_admin_key
-from app.core.config import settings
 
-from fastapi import APIRouter
+from app.core.config import settings
+from app.core.deps import require_admin_key
 
 router = APIRouter(tags=["meta"], dependencies=[Depends(require_admin_key)])
 

@@ -15,7 +15,6 @@ class Settings(BaseSettings):
     anthropic_api_key: str | None = None
     together_api_key: str | None = None
 
-
     # Models
     openai_model: str = "gpt-4o"
     anthropic_model: str = "claude-3-sonnet"

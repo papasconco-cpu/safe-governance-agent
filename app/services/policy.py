@@ -38,9 +38,13 @@ def generate_ai_use_policy(req: PolicyRequest) -> PolicyResponse:
     ]
 
     if "health" in data or "special_category" in data:
-        prohibited.append("Do not use AI with health or special category data unless a DPIA and explicit controls are approved.")
+        prohibited.append(
+            "Do not use AI with health or special category data unless a DPIA and explicit controls are approved."
+        )
     if "customers" in users:
-        prohibited.append("Do not allow AI to communicate directly with customers without approved scripts and human oversight.")
+        prohibited.append(
+            "Do not allow AI to communicate directly with customers without approved scripts and human oversight."
+        )
 
     data_handling = [
         "Classify data before use: public, internal, personal, special category.",
@@ -50,9 +54,13 @@ def generate_ai_use_policy(req: PolicyRequest) -> PolicyResponse:
     ]
 
     if strict:
-        data_handling.append("Default to blocking uncertain or high-risk inputs. Escalate to Compliance or DPO.")
+        data_handling.append(
+            "Default to blocking uncertain or high-risk inputs. Escalate to Compliance or DPO."
+        )
     else:
-        data_handling.append("If risk is unclear, pause and confirm the data classification before proceeding.")
+        data_handling.append(
+            "If risk is unclear, pause and confirm the data classification before proceeding."
+        )
 
     oversight = [
         "A human remains accountable for all decisions and communications.",

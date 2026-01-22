@@ -1,7 +1,8 @@
-from pydantic import BaseModel, Field
-from typing import List, Optional, Literal
+from typing import Literal
 
-from app.models.assessment import OrganisationProfile, AIUseCase, AssessmentResponse
+from pydantic import BaseModel
+
+from app.models.assessment import AIUseCase, AssessmentResponse, OrganisationProfile
 from app.models.policy import PolicyResponse
 from app.models.risk_register import RiskRegisterResponse
 
@@ -11,11 +12,11 @@ class BoardBriefRequest(BaseModel):
     use_case: AIUseCase
 
     # Optional: allow caller to include outputs from other endpoints
-    assessment: Optional[AssessmentResponse] = None
-    policy: Optional[PolicyResponse] = None
-    risk_register: Optional[RiskRegisterResponse] = None
+    assessment: AssessmentResponse | None = None
+    policy: PolicyResponse | None = None
+    risk_register: RiskRegisterResponse | None = None
 
-    notes: Optional[str] = None
+    notes: str | None = None
 
 
 class DecisionAsk(BaseModel):
@@ -28,8 +29,8 @@ class DecisionAsk(BaseModel):
 class BoardBriefResponse(BaseModel):
     brief_title: str
     version: str = "0.1.0"
-    executive_summary: List[str]
-    key_risks: List[str]
-    recommended_controls: List[str]
-    decision_asks: List[DecisionAsk]
-    next_steps_30_60_90: List[str]
+    executive_summary: list[str]
+    key_risks: list[str]
+    recommended_controls: list[str]
+    decision_asks: list[DecisionAsk]
+    next_steps_30_60_90: list[str]

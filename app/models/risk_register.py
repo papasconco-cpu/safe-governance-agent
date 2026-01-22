@@ -1,8 +1,8 @@
+from typing import Literal
+
 from pydantic import BaseModel, Field
-from typing import List, Literal, Optional
 
-from app.models.assessment import OrganisationProfile, AIUseCase
-
+from app.models.assessment import AIUseCase, OrganisationProfile
 
 RiskCategory = Literal[
     "data_privacy",
@@ -18,7 +18,7 @@ RiskCategory = Literal[
 class RiskRegisterRequest(BaseModel):
     profile: OrganisationProfile
     use_case: AIUseCase
-    notes: Optional[str] = None
+    notes: str | None = None
 
 
 class RiskItem(BaseModel):
@@ -29,7 +29,7 @@ class RiskItem(BaseModel):
     likelihood: int = Field(..., ge=1, le=5)
     impact: int = Field(..., ge=1, le=5)
     risk_score: int = Field(..., ge=1, le=25)
-    controls: List[str]
+    controls: list[str]
     owner_role: str
     review_days: int = Field(..., ge=7, le=365)
 
@@ -37,4 +37,4 @@ class RiskItem(BaseModel):
 class RiskRegisterResponse(BaseModel):
     register_title: str
     version: str = "0.1.0"
-    items: List[RiskItem]
+    items: list[RiskItem]

@@ -1,9 +1,9 @@
 import re
+
 from fastapi import APIRouter, Request
 
-from app.models.guardrail import GuardrailCheckRequest, GuardrailCheckResponse, Finding
+from app.models.guardrail import Finding, GuardrailCheckRequest, GuardrailCheckResponse
 from app.services.audit import write_audit_event
-
 
 router = APIRouter(tags=["guardrail"])
 
@@ -47,7 +47,9 @@ def guardrail_check(payload: GuardrailCheckRequest, request: Request) -> Guardra
     findings: list[Finding] = []
     risk_score = 0
 
-    def add_finding(f_type: str, label: str, count: int, severity: str, recommendation: str, score_add: int):
+    def add_finding(
+        f_type: str, label: str, count: int, severity: str, recommendation: str, score_add: int
+    ):
         nonlocal risk_score
         if count > 0:
             findings.append(

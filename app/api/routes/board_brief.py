@@ -1,12 +1,10 @@
 from fastapi import APIRouter, HTTPException, Request, status
 
-from app.models.board_brief import BoardBriefRequest, BoardBriefResponse
-from app.services.board_brief import generate_board_brief
-from app.services.audit import write_audit_event
-
 from app.api.routes.guardrail import guardrail_check
+from app.models.board_brief import BoardBriefRequest, BoardBriefResponse
 from app.models.guardrail import GuardrailCheckRequest
-
+from app.services.audit import write_audit_event
+from app.services.board_brief import generate_board_brief
 
 router = APIRouter(tags=["board-brief"])
 

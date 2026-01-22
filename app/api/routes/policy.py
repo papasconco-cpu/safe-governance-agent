@@ -1,12 +1,10 @@
 from fastapi import APIRouter, HTTPException, Request, status
 
-from app.models.policy import PolicyRequest, PolicyResponse
-from app.services.policy import generate_ai_use_policy
-from app.services.audit import write_audit_event
-
 from app.api.routes.guardrail import guardrail_check
 from app.models.guardrail import GuardrailCheckRequest
-
+from app.models.policy import PolicyRequest, PolicyResponse
+from app.services.audit import write_audit_event
+from app.services.policy import generate_ai_use_policy
 
 router = APIRouter(tags=["policy"])
 

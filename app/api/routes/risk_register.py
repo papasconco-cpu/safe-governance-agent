@@ -1,12 +1,10 @@
 from fastapi import APIRouter, HTTPException, Request, status
 
-from app.models.risk_register import RiskRegisterRequest, RiskRegisterResponse
-from app.services.risk_register import build_risk_register
-from app.services.audit import write_audit_event
-
 from app.api.routes.guardrail import guardrail_check
 from app.models.guardrail import GuardrailCheckRequest
-
+from app.models.risk_register import RiskRegisterRequest, RiskRegisterResponse
+from app.services.audit import write_audit_event
+from app.services.risk_register import build_risk_register
 
 router = APIRouter(tags=["risk-register"])
 

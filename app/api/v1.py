@@ -1,12 +1,14 @@
 from fastapi import APIRouter
-from fastapi.responses import JSONResponse
+
 from app.core.config import settings
 
 router = APIRouter(prefix="/api/v1", tags=["v1"])
 
+
 @router.get("/")
 def api_root():
     return {"status": "ok", "service": "safe-governance-agent"}
+
 
 @router.get("/health")
 def health():
@@ -15,6 +17,7 @@ def health():
         "python_version": "3.11",
         "environment": settings.environment,
     }
+
 
 @router.get("/meta")
 def meta():

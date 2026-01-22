@@ -16,4 +16,5 @@ __pycache__/
 logs/
 !logs/.gitkeep
 *.jsonl
+.vscode/
 

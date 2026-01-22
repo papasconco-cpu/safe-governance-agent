@@ -14,12 +14,17 @@ def generate_board_brief(req: BoardBriefRequest) -> BoardBriefResponse:
     ]
 
     if profile.regulated:
-        exec_summary.append("Regulated context: governance, privacy controls, and auditability are required.")
+        exec_summary.append(
+            "Regulated context: governance, privacy controls, and auditability are required."
+        )
 
     # Key risks: use risk register if provided; else provide baseline risks
     key_risks: list[str] = []
     if req.risk_register and req.risk_register.items:
-        key_risks = [f"{item.risk_id}: {item.title} (score {item.risk_score})" for item in req.risk_register.items[:5]]
+        key_risks = [
+            f"{item.risk_id}: {item.title} (score {item.risk_score})"
+            for item in req.risk_register.items[:5]
+        ]
     else:
         key_risks = [
             "Inaccurate outputs could be used without validation.",
@@ -39,7 +44,9 @@ def generate_board_brief(req: BoardBriefRequest) -> BoardBriefResponse:
         controls.append("Formal AI Use Policy drafted for this use case (draft status).")
 
     if req.assessment:
-        controls.append(f"Maturity assessment completed: score {req.assessment.maturity_score} ({req.assessment.maturity_level}).")
+        controls.append(
+            f"Maturity assessment completed: score {req.assessment.maturity_score} ({req.assessment.maturity_level})."
+        )
 
     # Decision asks
     asks: list[DecisionAsk] = [

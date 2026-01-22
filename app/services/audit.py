@@ -1,11 +1,10 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 from uuid import uuid4
-from typing import Any, Dict, Optional
 
 from app.core.config import settings
-
 
 AUDIT_LOG_PATH = Path("logs") / "audit.jsonl"
 
@@ -15,9 +14,9 @@ def write_audit_event(
     *,
     path: str,
     method: str,
-    client_ip: Optional[str],
+    client_ip: str | None,
     outcome: str,
-    details: Dict[str, Any],
+    details: dict[str, Any],
 ) -> str:
     """
     Writes one line per event to logs/audit.jsonl (JSONL format).
@@ -28,7 +27,7 @@ def write_audit_event(
     event_id = str(uuid4())
     payload = {
         "event_id": event_id,
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "timestamp_utc": datetime.now(UTC).isoformat(),
         "environment": settings.environment,
         "event_type": event_type,
         "http": {

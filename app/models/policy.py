@@ -1,19 +1,20 @@
-from pydantic import BaseModel, Field
-from typing import List, Literal, Optional
+from typing import Literal
 
-from app.models.assessment import OrganisationProfile, AIUseCase
+from pydantic import BaseModel, Field
+
+from app.models.assessment import AIUseCase, OrganisationProfile
 
 
 class PolicyRequest(BaseModel):
     profile: OrganisationProfile
     use_case: AIUseCase
     risk_appetite: Literal["low", "medium", "high"] = "low"
-    notes: Optional[str] = None
+    notes: str | None = None
 
 
 class PolicySection(BaseModel):
     title: str
-    bullets: List[str]
+    bullets: list[str]
 
 
 class PolicyResponse(BaseModel):
@@ -21,6 +22,6 @@ class PolicyResponse(BaseModel):
     version: str = "0.1.0"
     status: Literal["draft"] = "draft"
     purpose: str
-    scope: List[str]
-    sections: List[PolicySection]
+    scope: list[str]
+    sections: list[PolicySection]
     review_cadence_days: int = Field(..., ge=7, le=365)

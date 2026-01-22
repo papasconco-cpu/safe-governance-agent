@@ -1,4 +1,4 @@
-from app.models.assessment import AssessmentRequest, AssessmentResponse, Gap, ActionItem
+from app.models.assessment import ActionItem, AssessmentRequest, AssessmentResponse, Gap
 
 
 def _level(score: int) -> str:

@@ -1,4 +1,4 @@
-from app.models.risk_register import RiskRegisterRequest, RiskRegisterResponse, RiskItem
+from app.models.risk_register import RiskItem, RiskRegisterRequest, RiskRegisterResponse
 
 
 def _score(likelihood: int, impact: int) -> int:

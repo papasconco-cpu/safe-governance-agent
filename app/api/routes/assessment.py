@@ -1,13 +1,12 @@
 from fastapi import APIRouter, HTTPException, Request, status
 
-from app.models.assessment import AssessmentRequest, AssessmentResponse
-from app.services.assessment import run_maturity_assessment
-from app.services.audit import write_audit_event
-
 # Reuse your guardrail endpoint logic by importing the regex-based checker
 # (We’ll refactor into a shared service later; for MVP this is fine.)
 from app.api.routes.guardrail import guardrail_check
+from app.models.assessment import AssessmentRequest, AssessmentResponse
 from app.models.guardrail import GuardrailCheckRequest
+from app.services.assessment import run_maturity_assessment
+from app.services.audit import write_audit_event
 
 router = APIRouter(tags=["assessment"])
 
